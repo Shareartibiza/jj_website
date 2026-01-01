@@ -1,14 +1,7 @@
 #!/bin/bash
 
-# Check if Project ID is provided
-if [ -z "$1" ]; then
-  echo "Error: Project ID is required."
-  echo "Usage: ./deploy.sh <gen-lang-client-0792008363>"
-  exit 1
-fi
-
 # Set Project ID
-PROJECT_ID=$1
+PROJECT_ID="gen-lang-client-0792008363"
 
 # Add gcloud to PATH
 export PATH=/usr/local/share/google-cloud-sdk/bin:$PATH

@@ -35,7 +35,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.2 }}
                 >
-                    <h2 className="text-secondary bg-primary px-5 py-1.5 inline-block uppercase tracking-[0.4em] text-[10px] font-bold mb-8">
+                    <h2 className="text-white bg-primary px-5 py-2 inline-block uppercase tracking-[0.4em] text-[10px] font-bold mb-10">
                         Jozef & Julud
                     </h2>
                 </motion.div>
@@ -44,17 +44,17 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.4 }}
-                    className="font-serif text-5xl md:text-7xl lg:text-9xl text-white mb-8 leading-tight uppercase tracking-tighter"
+                    className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight tracking-tighter"
                 >
                     The Art of <br />
-                    <span className="italic font-light text-primary lowercase">Mediterranean</span> Living
+                    <span className="italic text-primary font-normal">Mediterranean</span> Living
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.6 }}
-                    className="text-gray-200 text-lg md:text-2xl max-w-3xl mx-auto mb-12 font-light tracking-wide"
+                    className="text-gray-200 text-base md:text-xl max-w-2xl mx-auto mb-16 font-light tracking-wide leading-relaxed"
                 >
                     Curating the world&apos;s most exclusive real estate and lifestyle experiences in Ibiza and Spain.
                 </motion.p>
@@ -66,10 +66,12 @@ export default function Hero() {
                     className="flex flex-col md:flex-row gap-6 justify-center items-center"
                 >
                     <a href="/contact">
-                        <Button size="lg" className="px-12">Request Private Access</Button>
+                        <Button size="lg" className="px-12 bg-primary border-primary hover:bg-transparent hover:text-primary transition-all duration-300 uppercase tracking-widest text-xs font-bold">
+                            Processing Access
+                        </Button>
                     </a>
                     <a href="/real-estate">
-                        <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-black hover:border-white px-12">
+                        <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-black hover:border-white px-12 uppercase tracking-widest text-xs font-bold">
                             Explore Collection
                         </Button>
                     </a>

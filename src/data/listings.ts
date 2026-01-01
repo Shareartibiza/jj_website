@@ -39,9 +39,18 @@ export const properties: PropertyListing[] = [
         price: '€12,500,000',
         category: 'Villas',
         images: [
-            { url: '/assets/villa_es_cubells_main.png', alt: 'Villa Es Cubells Exterior' },
+            { url: '/assets/listings/villa_es_cubells/ext_1.png', alt: 'Villa Es Cubells Exterior' },
+            { url: '/assets/listings/villa_es_cubells/int_1.png', alt: 'Villa Es Cubells Interior' },
+            { url: '/assets/listings/villa_es_cubells/pool_1.png', alt: 'Infinity Pool' },
+            { url: '/assets/listings/villa_es_cubells/kitchen_1.png', alt: 'Designer Kitchen' },
+            { url: '/assets/listings/villa_es_cubells/bedroom_1.png', alt: 'Master Bedroom' },
+            { url: '/assets/listings/villa_es_cubells/wine_1.png', alt: 'Wine Cellar' },
             { url: '/assets/lifestyle_pool_steps.jpg', alt: 'Pool Area' },
-            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Outdoor Dining' }
+            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Outdoor Dining' },
+            { url: '/assets/lifestyle_interior_detail.png', alt: 'Living Space' },
+            { url: '/assets/lifestyle_drink_sea.jpg', alt: 'Sunset Drinks' },
+            { url: '/assets/uploaded_image_0_1765377317186.jpg', alt: 'Villa View 1' },
+            { url: '/assets/uploaded_image_1_1765377317186.jpg', alt: 'Villa View 2' }
         ],
         specs: {
             bedrooms: 6,
@@ -66,9 +75,16 @@ export const properties: PropertyListing[] = [
         price: 'Price on Request',
         category: 'Big Projects',
         images: [
-            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Can Rimbau Main View' },
-            { url: '/assets/lifestyle_oysters_dining.jpg', alt: 'Interior Detail' },
-            { url: '/assets/lifestyle_interior_detail.png', alt: 'Living Space' }
+            { url: '/assets/luxury_villa_facade_1.jpg', alt: 'Can Rimbau Exterior' },
+            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Can Rimbau Dining' },
+            { url: '/assets/lifestyle_oysters_dining.jpg', alt: 'Fine Dining' },
+            { url: '/assets/lifestyle_interior_detail.png', alt: 'Interior Detail' },
+            { url: '/assets/lifestyle_pool_steps.jpg', alt: 'Pool Area' },
+            { url: '/assets/lifestyle_drink_sea.jpg', alt: 'Terrace View' },
+            { url: '/assets/uploaded_image_2_1765377317186.jpg', alt: 'Estate View' },
+            { url: '/assets/uploaded_image_3_1765377317186.jpg', alt: 'Guest House' },
+            { url: '/assets/lifestyle_woman_sea.jpg', alt: 'Lifestyle View' },
+            { url: '/assets/journal_bespoke_travel.png', alt: 'Exclusive Access' }
         ],
         specs: {
             bedrooms: 9,
@@ -93,8 +109,16 @@ export const properties: PropertyListing[] = [
         price: '€6,800,000',
         category: 'Villas',
         images: [
-            { url: '/assets/lifestyle_speedboat_aerial.jpg', alt: 'Modern Bay Retreat' },
-            { url: '/assets/lifestyle_pool_steps.jpg', alt: 'Terrace View' }
+            { url: '/assets/lifestyle_speedboat_aerial.jpg', alt: 'Modern Bay Exterior' },
+            { url: '/assets/lifestyle_pool_steps.jpg', alt: 'Terrace View' },
+            { url: '/assets/lifestyle_drink_sea.jpg', alt: 'Bay View' },
+            { url: '/assets/uploaded_image_4_1765377317186.jpg', alt: 'Modernist Lines' },
+            { url: '/assets/lifestyle_interior_detail.png', alt: 'Bedroom View' },
+            { url: '/assets/lifestyle_oysters_dining.jpg', alt: 'Dining Detail' },
+            { url: '/assets/lifestyle_woman_sea.jpg', alt: 'Coastal Lifestyle' },
+            { url: '/assets/journal_hidden_ibiza.png', alt: 'Hidden Gems' },
+            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Evening Terrace' },
+            { url: '/assets/uploaded_image_0_1765432651320.jpg', alt: 'Details' }
         ],
         specs: {
             bedrooms: 5,
@@ -123,7 +147,15 @@ export const lifestyleItems: LifestyleListing[] = [
         category: 'Yacht',
         images: [
             { url: '/assets/lifestyle_yacht_freedom.png', alt: 'Sunseeker 131' },
-            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Aft Deck Dining' }
+            { url: '/assets/lifestyle_yacht_dining.jpg', alt: 'Aft Deck Dining' },
+            { url: '/assets/lifestyle_oysters_dining.jpg', alt: 'Gourmet Service' },
+            { url: '/assets/lifestyle_drink_sea.jpg', alt: 'Deck Cocktails' },
+            { url: '/assets/lifestyle_speedboat_aerial.jpg', alt: 'Chase Boat' },
+            { url: '/assets/lifestyle_woman_sea.jpg', alt: 'Ocean Breeze' },
+            { url: '/assets/lifestyle_interior_detail.png', alt: 'Main Saloon' },
+            { url: '/assets/lifestyle_aircraft_cockpit.jpg', alt: 'Navigation Bridge' },
+            { url: '/assets/journal_bespoke_travel.png', alt: 'Global Standard' },
+            { url: '/assets/uploaded_image_1_1765432651320.jpg', alt: 'Deck View' }
         ],
         specs: {
             'Length': '40.05m',
@@ -200,7 +232,15 @@ export const lifestyleItems: LifestyleListing[] = [
         category: 'Car',
         images: [
             { url: '/assets/lifestyle_car_luggage.jpg', alt: 'Ferrari 296 GTB' },
-            { url: '/assets/lifestyle_car_mirror.jpg', alt: 'Ferrari 296 GTB Detail' }
+            { url: '/assets/lifestyle_car_mirror.jpg', alt: 'Ferrari 296 GTB Detail' },
+            { url: '/assets/lifestyle_interior_detail.png', alt: 'Dashboard Detail' },
+            { url: '/assets/lifestyle_pool_steps.jpg', alt: 'Scenic Road' },
+            { url: '/assets/lifestyle_oysters_dining.jpg', alt: 'GT Lifestyle' },
+            { url: '/assets/uploaded_image_2_1765432651320.jpg', alt: 'Sleek Lines' },
+            { url: '/assets/journal_market_report.png', alt: 'Investment Grade' },
+            { url: '/assets/lifestyle_drink_sea.jpg', alt: 'Coastal Drive' },
+            { url: '/assets/uploaded_image_3_1765432651320.jpg', alt: 'Performance' },
+            { url: '/assets/uploaded_image_4_1765432651320.jpg', alt: 'Design' }
         ],
         specs: {
             'Engine': 'V6 - 120°',

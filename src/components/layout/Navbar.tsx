@@ -75,13 +75,13 @@ export default function Navbar() {
                                 className={`flex items-center gap-1 text-xs font-medium tracking-widest uppercase transition-colors ${activeDropdown === link.name ? 'text-primary' : 'text-gray-400 hover:text-white'}`}
                             >
                                 {link.name}
-                                {link.subLinks && <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
+                                {link.subLinks && (link.subLinks.length > 0) && <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
                                 <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-[1px] bg-primary transition-all duration-300 ${activeDropdown === link.name ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                             </Link>
 
                             {/* Dropdown Menu */}
                             <AnimatePresence>
-                                {link.subLinks && activeDropdown === link.name && (
+                                {link.subLinks && link.subLinks.length > 0 && activeDropdown === link.name && (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -134,11 +134,11 @@ export default function Navbar() {
                                         <Link
                                             href={link.href}
                                             className="text-3xl font-serif text-accent hover:text-primary transition-colors text-center"
-                                            onClick={() => !link.subLinks && setMobileMenuOpen(false)}
+                                            onClick={() => (!link.subLinks || link.subLinks.length === 0) && setMobileMenuOpen(false)}
                                         >
                                             {link.name}
                                         </Link>
-                                        {link.subLinks && (
+                                        {link.subLinks && link.subLinks.length > 0 && (
                                             <div className="flex flex-col items-center gap-4 border-l border-primary/20 pl-4 py-2">
                                                 {link.subLinks.map((sub) => (
                                                     <Link

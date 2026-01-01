@@ -1,0 +1,236 @@
+{
+    "properties": [
+        {
+            "id": "1",
+            "title": "Villa Es Cubells",
+            "location": "Es Cubells, Ibiza",
+            "price": "€12,500,000",
+            "category": "Villas",
+            "images": [
+                {
+                    "url": "/assets/villa_es_cubells_main.png",
+                    "alt": "Villa Es Cubells Exterior"
+                },
+                {
+                    "url": "/assets/lifestyle_pool_steps.jpg",
+                    "alt": "Pool Area"
+                },
+                {
+                    "url": "/assets/lifestyle_yacht_dining.jpg",
+                    "alt": "Outdoor Dining"
+                }
+            ],
+            "specs": {
+                "bedrooms": 6,
+                "bathrooms": 7,
+                "buildSize": "550 sq m",
+                "plotSize": "2,500 sq m"
+            },
+            "description": "Perched on the cliffs of Es Cubells, this architectural masterpiece offers unparalleled Mediterranean views. The villa combines brutalist concrete lines with warm, organic materials, creating a sanctuary of light and space. Designed for the ultimate indoor-outdoor lifestyle, every room opens onto expansive terraces overlooking the sea.",
+            "features": [
+                "Infinity pool with saline system",
+                "Full-service outdoor kitchen",
+                "Professional-grade gym",
+                "Staff quarters with separate entrance",
+                "Private beach access path",
+                "Smart home automation throughout"
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Can Rimbau Estate",
+            "location": "Jesus, Ibiza",
+            "price": "Price on Request",
+            "category": "Big Projects",
+            "images": [
+                {
+                    "url": "/assets/lifestyle_yacht_dining.jpg",
+                    "alt": "Can Rimbau Main View"
+                },
+                {
+                    "url": "/assets/lifestyle_oysters_dining.jpg",
+                    "alt": "Interior Detail"
+                },
+                {
+                    "url": "/assets/lifestyle_interior_detail.png",
+                    "alt": "Living Space"
+                }
+            ],
+            "specs": {
+                "bedrooms": 9,
+                "bathrooms": 11,
+                "buildSize": "1,200 sq m",
+                "plotSize": "15,000 sq m"
+            },
+            "description": "One of Ibiza's most exclusive estates, located within the secure gates of Can Rimbau. This sprawling property offers complete privacy just minutes from Ibiza Town. The estate features a main villa, two guest houses, and a world-class wellness center, all surrounded by meticulously landscaped Mediterranean gardens.",
+            "features": [
+                "Secure gated community (24/7 security)",
+                "Indoor and outdoor pools",
+                "Private cinema and media room",
+                "10-car underground garage",
+                "Wine cellar and tasting room",
+                "Heliport access"
+            ]
+        },
+        {
+            "id": "3",
+            "title": "Modern Bay Retreat",
+            "location": "Talamanca, Ibiza",
+            "price": "€6,800,000",
+            "category": "Villas",
+            "images": [
+                {
+                    "url": "/assets/lifestyle_speedboat_aerial.jpg",
+                    "alt": "Modern Bay Retreat"
+                },
+                {
+                    "url": "/assets/lifestyle_pool_steps.jpg",
+                    "alt": "Terrace View"
+                }
+            ],
+            "specs": {
+                "bedrooms": 5,
+                "bathrooms": 5,
+                "buildSize": "380 sq m",
+                "plotSize": "800 sq m"
+            },
+            "description": "A sleek, contemporary villa just steps from the sand of Talamanca Bay. This property is defined by its clean lines and floor-to-ceiling glass walls that disappear to merge the interior with the sea breeze. An ideal residence for those who want the energy of the Marina and the serenity of a private home.",
+            "features": [
+                "Rooftop sun deck with Jacuzzi",
+                "Walking distance to Marina Botafoch",
+                "Designer kitchen by Bulthaup",
+                "Advanced security systems",
+                "Underfloor heating",
+                "Minimalist garden design"
+            ]
+        }
+    ],
+    "lifestyle": [
+        {
+            "id": "1",
+            "title": "Sunseeker 131 Yacht",
+            "description": "The epitome of luxury cruising with 5 cabins and sky deck. A masterpiece of British engineering and Italian-inspired luxury.",
+            "price": "€145,000 / week",
+            "category": "Yacht",
+            "images": [
+                {
+                    "url": "/assets/lifestyle_yacht_freedom.png",
+                    "alt": "Sunseeker 131"
+                },
+                {
+                    "url": "/assets/lifestyle_yacht_dining.jpg",
+                    "alt": "Aft Deck Dining"
+                }
+            ],
+            "specs": {
+                "Length": "40.05m",
+                "Guests": "12",
+                "Cabins": "5",
+                "Crew": "8",
+                "Built": "2023"
+            },
+            "features": [
+                "Tri-deck configuration",
+                "Zero-speed stabilizers",
+                "On-deck Master suite",
+                "Sky lounge with wet bar",
+                "Full array of water toys",
+                "Submersible swim platform"
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Gulfstream G650ER",
+            "description": "Ultra-long-range business jet connecting Ibiza to the world. The gold standard for business aviation, offering the quietest cabin in the industry.",
+            "price": "On Request",
+            "category": "Jet",
+            "images": [
+                {
+                    "url": "/assets/lifestyle_aircraft_cockpit.jpg",
+                    "alt": "G650ER Cockpit"
+                },
+                {
+                    "url": "/assets/lifestyle_interior_detail.png",
+                    "alt": "Cabin Interior"
+                }
+            ],
+            "specs": {
+                "Range": "7,500 nm",
+                "Speed": "Mach 0.925",
+                "Passengers": "16",
+                "Sleeping": "10",
+                "Interior": "Bespoke leather"
+            },
+            "features": [
+                "Fresh air replenishment system",
+                "Whisper-quiet cabin technology",
+                "Ka-band high-speed Wi-Fi",
+                "Dual lavatories",
+                "State-of-the-art entertainment",
+                "Panoramic oval windows"
+            ]
+        },
+        {
+            "id": "3",
+            "title": "Patek Philippe Nautilus",
+            "description": "A legendary timepiece that is both sporty and elegant. The ultimate status symbol.",
+            "price": "On Request",
+            "category": "Watch",
+            "images": [
+                {
+                    "url": "/assets/uploaded_image_0_1765432651320.jpg",
+                    "alt": "Patek Philippe Nautilus"
+                },
+                {
+                    "url": "/assets/uploaded_image_1_1765432651320.jpg",
+                    "alt": "Patek Philippe Nautilus Detail"
+                }
+            ],
+            "specs": {
+                "Case": "Stainless Steel",
+                "Diameter": "40mm",
+                "Movement": "Automatic",
+                "Water Resistance": "120m",
+                "Year": "2022"
+            },
+            "features": [
+                "Iconic porthole case design",
+                "Self-winding mechanical movement",
+                "Date in an aperture",
+                "Stainless steel bracelet",
+                "Fold-over clasp"
+            ]
+        },
+        {
+            "id": "4",
+            "title": "Ferrari 296 GTB",
+            "description": "The new era of V6-powered supercars from Ferrari. A revolution in performance and driving pleasure.",
+            "price": "On Request",
+            "category": "Car",
+            "images": [
+                {
+                    "url": "/assets/lifestyle_car_luggage.jpg",
+                    "alt": "Ferrari 296 GTB"
+                },
+                {
+                    "url": "/assets/lifestyle_car_mirror.jpg",
+                    "alt": "Ferrari 296 GTB Detail"
+                }
+            ],
+            "specs": {
+                "Engine": "V6 - 120°",
+                "Power": "830 hp",
+                "0-100 km/h": "2.9s",
+                "Top Speed": "> 330 km/h",
+                "Dry Weight": "1470 kg"
+            },
+            "features": [
+                "Plug-in hybrid architecture",
+                "eManettino steering wheel",
+                "Aerodynamic active spoiler",
+                "Full-digital interface",
+                "Carbon-fiber trim"
+            ]
+        }
+    ]
+}
