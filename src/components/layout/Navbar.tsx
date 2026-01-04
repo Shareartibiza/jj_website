@@ -8,6 +8,7 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 const navLinks = [
     { name: 'Real Estate', href: '/real-estate' },
     { name: 'Lifestyle', href: '/lifestyle' },
+    { name: 'Services', href: '/services' },
     { name: 'Journal', href: '/journal' },
     {
         name: 'Passion',

@@ -63,8 +63,8 @@ export default function ContactPage() {
 
                         <div className="p-8 border border-white/10 bg-white/5 rounded-sm">
                             <h3 className="text-primary font-medium uppercase tracking-widest mb-4">Direct Contact</h3>
-                            <a href="mailto:consultations@jj-luxury.com" className="text-white text-lg mb-2">consultations@jj-luxury.com</a>
-                            <p className="text-white text-lg">+34 971 000 000</p>
+                            <a href="mailto:yours@jjluxurylifestyle.com" className="text-white text-lg mb-2">yours@jjluxurylifestyle.com</a>
+                            <p className="text-white text-lg">+34 691340237</p>
                         </div>
                     </motion.div>
 

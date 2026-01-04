@@ -40,27 +40,33 @@ export default function Intro() {
 
                 {/* Founders Images */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="grid grid-cols-2 gap-4 md:gap-6"
+                    transition={{ duration: 1 }}
+                    className="grid grid-cols-2 gap-4 md:gap-8"
                 >
                     {/* Jozef */}
-                    <div className="relative aspect-[3/4] bg-gray-900 overflow-hidden group">
-                        <div className="absolute inset-0 bg-[url('/assets/jozef_bio.jpg')] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" />
-                        <div className="absolute inset-0 border border-white/10 m-3" />
-                        <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <span className="text-white text-xs tracking-[0.2em] uppercase">Jozef</span>
+                    <div className="relative aspect-[3/4] bg-luxury-black overflow-hidden group">
+                        <div
+                            className="absolute inset-0 bg-[url('/assets/jozef_bio.jpg')] bg-cover bg-center grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-in-out"
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-1000" />
+                        <div className="absolute inset-0 border border-white/5 m-4" />
+                        <div className="absolute bottom-6 left-0 right-0 text-center translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                            <span className="text-white text-[10px] tracking-[0.4em] uppercase font-bold">Jozef</span>
                         </div>
                     </div>
 
                     {/* Julud */}
-                    <div className="relative aspect-[3/4] bg-gray-900 overflow-hidden group mt-12">
-                        <div className="absolute inset-0 bg-[url('/assets/julud_bio.jpg')] bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" />
-                        <div className="absolute inset-0 border border-white/10 m-3" />
-                        <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <span className="text-white text-xs tracking-[0.2em] uppercase">Julud</span>
+                    <div className="relative aspect-[3/4] bg-luxury-black overflow-hidden group mt-16">
+                        <div
+                            className="absolute inset-0 bg-[url('/assets/julud_bio.jpg')] bg-cover bg-center grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-in-out"
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-1000" />
+                        <div className="absolute inset-0 border border-white/5 m-4" />
+                        <div className="absolute bottom-6 left-0 right-0 text-center translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                            <span className="text-white text-[10px] tracking-[0.4em] uppercase font-bold">Julud</span>
                         </div>
                     </div>
                 </motion.div>
