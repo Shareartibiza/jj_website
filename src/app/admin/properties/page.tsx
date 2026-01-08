@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
+import { Property } from '@/types';
 import {
     Plus,
     Search,
@@ -19,14 +20,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function AdminProperties() {
-    const [properties, setProperties] = useState<any[]>([]);
+    const [properties, setProperties] = useState<Property[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetch('/api/listings?category=property')
             .then(res => res.json())
-            .then(data => {
+            .then((data: Property[]) => {
                 setProperties(data);
                 setLoading(false);
             })
@@ -102,10 +103,11 @@ export default function AdminProperties() {
                                 <div className="flex flex-col sm:flex-row">
                                     {/* Image */}
                                     <div className="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden">
-                                        <img
+                                        <Image
                                             src={property.images[0]?.url || '/assets/placeholder.jpg'}
                                             alt={property.title}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                            fill
+                                            className="object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
                                         <div className="absolute top-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest font-bold text-white border border-white/10">
                                             {property.category}

@@ -6,9 +6,18 @@ import Image from 'next/image'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import { Home, Briefcase, Gem } from 'lucide-react'
+import { ElementType } from 'react';
+
+interface Service {
+    title: string;
+    description: string;
+    icon: ElementType;
+    href: string;
+    image: string;
+}
 
 // Using Lucide icons for now, can replace with custom SVGs later
-const services = [
+const services: Service[] = [
     {
         title: 'Real Estate',
         description: 'Luxury villas, grand estates, and exclusive development projects.',

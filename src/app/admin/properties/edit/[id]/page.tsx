@@ -6,17 +6,18 @@ import PropertyForm from '@/components/admin/PropertyForm';
 import { ChevronLeft, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { Property } from '@/types';
 
 export default function EditPropertyPage() {
     const { id } = useParams();
-    const [property, setProperty] = useState<any>(null);
+    const [property, setProperty] = useState<Property | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (id) {
             fetch(`/api/listings/${id}`)
                 .then(res => res.json())
-                .then(data => {
+                .then((data: Property) => {
                     setProperty(data);
                     setLoading(false);
                 })

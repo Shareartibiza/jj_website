@@ -6,17 +6,18 @@ import LifestyleForm from '@/components/admin/LifestyleForm';
 import { ChevronLeft, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { Lifestyle } from '@/types';
 
 export default function EditLifestylePage() {
     const { id } = useParams();
-    const [item, setItem] = useState<any>(null);
+    const [item, setItem] = useState<Lifestyle | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (id) {
             fetch(`/api/listings/${id}`)
                 .then(res => res.json())
-                .then(data => {
+                .then((data: Lifestyle) => {
                     setItem(data);
                     setLoading(false);
                 })

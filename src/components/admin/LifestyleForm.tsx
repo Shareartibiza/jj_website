@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Lifestyle, Specs } from '@/types';
 import {
     Save,
     Plus,
@@ -15,28 +16,38 @@ import {
 } from 'lucide-react';
 
 interface LifestyleFormProps {
-    initialData?: any;
+    initialData?: Partial<Lifestyle>;
     isEditing?: boolean;
 }
 
 export default function LifestyleForm({ initialData, isEditing = false }: LifestyleFormProps) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        price: '',
-        category: 'Yacht',
-        images: [{ url: '', alt: '' }],
-        specs: {},
-        features: ['']
+    const [formData, setFormData] = useState<Lifestyle>({
+        id: initialData?.id || '',
+        title: initialData?.title || '',
+        description: initialData?.description || '',
+        price: initialData?.price || '',
+        category: initialData?.category || 'Yacht',
+        images: initialData?.images || [{ url: '', alt: '' }],
+        specs: initialData?.specs || {},
+        features: initialData?.features || ['']
     });
 
-    const [specEntries, setSpecEntries] = useState<[string, string][]>([['', '']]);
+    const [specEntries, setSpecEntries] = useState<[string, string | number][]>([['', '']]);
 
     useEffect(() => {
         if (initialData) {
-            setFormData(initialData);
+            setFormData({
+                id: initialData.id || '',
+                title: initialData.title || '',
+                description: initialData.description || '',
+                price: initialData.price || '',
+                category: initialData.category || 'Yacht',
+                images: initialData.images || [{ url: '', alt: '' }],
+                specs: initialData.specs || {},
+                features: initialData.features || ['']
+            });
             if (initialData.specs) {
                 setSpecEntries(Object.entries(initialData.specs));
             }
@@ -79,25 +90,24 @@ export default function LifestyleForm({ initialData, isEditing = false }: Lifest
         e.preventDefault();
         setLoading(true);
 
-        const specsObj = specEntries.reduce((acc, [key, val]) => {
+        const specsObj: Specs = specEntries.reduce((acc, [key, val]) => {
             if (key.trim()) acc[key.trim()] = val;
             return acc;
-        }, {} as Record<string, string>);
+        }, {} as Specs);
 
         try {
-            const url = isEditing ? `/api/listings/${initialData.id}` : '/api/listings';
+            const url = isEditing ? `/api/listings/${initialData?.id}` : '/api/listings';
             const method = isEditing ? 'PUT' : 'POST';
 
             const payload = {
                 ...formData,
                 specs: specsObj,
-                type: 'lifestyle'
             };
 
             const res = await fetch(url, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({ ...payload, type: 'lifestyle' }),
             });
 
             if (res.ok) {
@@ -208,14 +218,14 @@ export default function LifestyleForm({ initialData, isEditing = false }: Lifest
                                 type="text"
                                 placeholder="Label (e.g. Length)"
                                 value={key}
-                                onChange={(e) => handleSpecChange(index, e.target.value, val)}
+                                onChange={(e) => handleSpecChange(index, e.target.value, val as string)}
                                 className="bg-[#1a1a1a] border border-white/5 rounded-lg py-2 px-3 text-xs text-white"
                             />
                             <div className="flex gap-2">
                                 <input
                                     type="text"
                                     placeholder="Value (e.g. 40m)"
-                                    value={val}
+                                    value={val as string}
                                     onChange={(e) => handleSpecChange(index, key, e.target.value)}
                                     className="flex-1 bg-[#1a1a1a] border border-white/5 rounded-lg py-2 px-3 text-sm text-white"
                                 />

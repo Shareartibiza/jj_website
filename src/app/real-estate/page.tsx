@@ -5,9 +5,11 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import PropertyCard from '@/components/real-estate/PropertyCard'
+import { Property } from '@/types';
+import SectionHero from '@/components/sections/SectionHero'
 
 export default function RealEstatePage() {
-    const [properties, setProperties] = useState<any[]>([]);
+    const [properties, setProperties] = useState<Property[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -27,13 +29,12 @@ export default function RealEstatePage() {
         <main className="bg-secondary min-h-screen">
             <Navbar />
 
-            {/* Simple Header */}
-            <section className="pt-40 pb-20 px-6 text-center">
-                <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">Exclusive Portfolio</h1>
-                <p className="text-gray-400 max-w-xl mx-auto">
-                    Discover our curated collection of luxury properties, from private villas to large-scale investment projects.
-                </p>
-            </section>
+            <SectionHero
+                title="Exclusive Portfolio"
+                subtitle="Discover our curated collection of luxury properties, from private villas to large-scale investment projects."
+                videoSrc="https://cdn.pixabay.com/video/2020/06/19/42533-431835773_large.mp4"
+                category="Real Estate"
+            />
 
             <Section>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

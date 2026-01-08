@@ -5,7 +5,18 @@ import Link from 'next/link'
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
-const navLinks = [
+interface NavLink {
+    name: string;
+    href: string;
+    subLinks?: SubLink[];
+}
+
+interface SubLink {
+    name: string;
+    href: string;
+}
+
+const navLinks: NavLink[] = [
     { name: 'Real Estate', href: '/real-estate' },
     { name: 'Lifestyle', href: '/lifestyle' },
     { name: 'Services', href: '/services' },

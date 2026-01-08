@@ -1,5 +1,5 @@
-import React from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
+import { ElementType } from 'react';
 import {
     Plus,
     TrendingUp,
@@ -12,11 +12,32 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
+interface Stat {
+    name: string;
+    value: string;
+    change: string;
+    icon: ElementType;
+    color: string;
+}
+
+interface Activity {
+    type: 'property' | 'lifestyle';
+    title: string;
+    action: string;
+    time: string;
+}
+
 export default function AdminDashboard() {
-    const stats = [
+    const stats: Stat[] = [
         { name: 'Total Listings', value: '7', change: '+2', icon: Home, color: 'text-pink-500' },
         { name: 'Page Views', value: '1,248', change: '+12%', icon: Eye, color: 'text-blue-500' },
         { name: 'Inquiries', value: '42', change: '+5', icon: TrendingUp, color: 'text-green-500' },
+    ];
+
+    const activities: Activity[] = [
+        { type: 'property', title: 'Villa Es Cubells', action: 'updated', time: '2 hours ago' },
+        { type: 'lifestyle', title: 'Sunseeker 131', action: 'price changed', time: '5 hours ago' },
+        { type: 'property', title: 'Modern Bay Retreat', action: 'new photos added', time: '1 day ago' }
     ];
 
     return (
@@ -100,13 +121,9 @@ export default function AdminDashboard() {
                     <div className="bg-[#141414] border border-white/5 rounded-3xl p-8 overflow-hidden">
                         <h2 className="text-xl font-bold text-white mb-6">Latest Updates</h2>
                         <div className="space-y-6">
-                            {[
-                                { type: 'property', title: 'Villa Es Cubells', action: 'updated', time: '2 hours ago' },
-                                { type: 'lifestyle', title: 'Sunseeker 131', action: 'price changed', time: '5 hours ago' },
-                                { type: 'property', title: 'Modern Bay Retreat', action: 'new photos added', time: '1 day ago' }
-                            ].map((activity, i) => (
+                            {activities.map((activity, i) => (
                                 <div key={i} className="flex gap-4 relative">
-                                    {i < 2 && <div className="absolute top-8 bottom-[-24px] left-[15px] w-[1px] bg-white/5" />}
+                                    {i < activities.length - 1 && <div className="absolute top-8 bottom-[-24px] left-[15px] w-[1px] bg-white/5" />}
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 z-10 ${activity.type === 'property' ? 'bg-pink-500/20 text-pink-500' : 'bg-blue-500/20 text-blue-500'
                                         }`}>
                                         {activity.type === 'property' ? <Home size={14} /> : <Anchor size={14} />}

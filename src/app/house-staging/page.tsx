@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import Image from 'next/image'
+import SectionHero from '@/components/sections/SectionHero'
 import Button from '@/components/ui/Button'
 
 export default function HouseStagingPage() {
@@ -9,22 +10,12 @@ export default function HouseStagingPage() {
         <main className="bg-secondary min-h-screen text-white">
             <Navbar />
 
-            {/* Hero Section */}
-            <div className="relative h-[60vh] w-full overflow-hidden">
-                <Image
-                    src="/assets/lifestyle_pool_steps.jpg"
-                    alt="Luxury House Staging"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                    <div className="text-center px-6">
-                        <h1 className="text-5xl md:text-7xl font-serif text-white mb-6">House Staging</h1>
-                        <p className="text-primary text-xl tracking-widest uppercase">The Art of Selling the Dream</p>
-                    </div>
-                </div>
-            </div>
+            <SectionHero
+                title="House Staging"
+                subtitle="Strategic property presentation designed to maximize rental yield and market value."
+                videoSrc="https://cdn.pixabay.com/video/2020/09/24/51016-464335447_large.mp4"
+                category="Marketing"
+            />
 
             <Section>
                 <div className="grid md:grid-cols-2 gap-16 items-center">

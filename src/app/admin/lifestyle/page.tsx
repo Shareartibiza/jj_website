@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
+import { Lifestyle } from '@/types';
 import {
     Plus,
     Search,
@@ -16,16 +17,17 @@ import {
     Tag
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AdminLifestyle() {
-    const [items, setItems] = useState<any[]>([]);
+    const [items, setItems] = useState<Lifestyle[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetch('/api/listings?category=lifestyle')
             .then(res => res.json())
-            .then(data => {
+            .then((data: Lifestyle[]) => {
                 setItems(data);
                 setLoading(false);
             })
@@ -105,10 +107,11 @@ export default function AdminLifestyle() {
                         filteredItems.map((item) => (
                             <div key={item.id} className="bg-[#141414] border border-white/5 rounded-3xl overflow-hidden hover:border-white/10 transition-all group flex flex-col">
                                 <div className="relative h-48 overflow-hidden">
-                                    <img
+                                    <Image
                                         src={item.images[0]?.url || '/assets/placeholder.jpg'}
                                         alt={item.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
                                     />
                                     <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-xl text-[10px] uppercase tracking-widest font-bold text-white border border-white/10">
                                         <span className="text-pink-500">{getIcon(item.category)}</span>

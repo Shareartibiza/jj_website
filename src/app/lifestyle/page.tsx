@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import LifestyleCard from '@/components/lifestyle/LifestyleCard'
+import SectionHero from '@/components/sections/SectionHero'
 
 export default function LifestylePage() {
     const [lifestyleItems, setLifestyleItems] = useState<any[]>([]);
@@ -27,13 +28,12 @@ export default function LifestylePage() {
         <main className="bg-secondary min-h-screen">
             <Navbar />
 
-            {/* Header */}
-            <section className="pt-40 pb-20 px-6 text-center">
-                <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">Lifestyle Collection</h1>
-                <p className="text-gray-400 max-w-xl mx-auto">
-                    Beyond real estate. Curated excellence for the discerning few.
-                </p>
-            </section>
+            <SectionHero
+                title="Lifestyle Collection"
+                subtitle="Beyond real estate. Curated excellence for the discerning few."
+                videoSrc="https://cdn.pixabay.com/video/2021/09/25/89660-609804595_large.mp4"
+                category="Lifestyle"
+            />
 
             <Section>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

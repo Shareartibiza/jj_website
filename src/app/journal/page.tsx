@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import Image from 'next/image'
+import SectionHero from '@/components/sections/SectionHero'
 
 const articles = [
     {
@@ -40,12 +41,12 @@ export default function JournalPage() {
         <main className="bg-secondary min-h-screen">
             <Navbar />
 
-            <section className="pt-40 pb-20 px-6 text-center">
-                <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">The Journal</h1>
-                <p className="text-gray-400 max-w-xl mx-auto">
-                    Insights into the Mediterranean lifestyle, market trends, and hidden secrets.
-                </p>
-            </section>
+            <SectionHero
+                title="The Journal"
+                subtitle="Insights into the Mediterranean lifestyle, market trends, and hidden secrets."
+                videoSrc="https://cdn.pixabay.com/video/2020/05/24/39906-424366624_large.mp4"
+                category="Insights"
+            />
 
             <Section>
                 <div className="space-y-32">

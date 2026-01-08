@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Property } from '@/types';
 import {
     Save,
     X,
@@ -17,48 +18,59 @@ import {
 } from 'lucide-react';
 
 interface PropertyFormProps {
-    initialData?: any;
+    initialData?: Partial<Property>;
     isEditing?: boolean;
 }
 
 export default function PropertyForm({ initialData, isEditing = false }: PropertyFormProps) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState({
-        title: '',
-        location: '',
-        price: '',
-        category: 'Villas',
-        description: '',
-        images: [{ url: '', alt: '' }],
-        specs: {
+    const [formData, setFormData] = useState<Property>({
+        id: initialData?.id || '',
+        title: initialData?.title || '',
+        location: initialData?.location || '',
+        price: initialData?.price || '',
+        category: initialData?.category || 'Villas',
+        description: initialData?.description || '',
+        images: initialData?.images || [{ url: '', alt: '' }],
+        specs: initialData?.specs || {
             bedrooms: 0,
             bathrooms: 0,
             buildSize: '',
             plotSize: ''
         },
-        features: ['']
+        features: initialData?.features || ['']
     });
 
     useEffect(() => {
         if (initialData) {
-            setFormData(initialData);
+            setFormData({
+                id: initialData.id || '',
+                title: initialData.title || '',
+                location: initialData.location || '',
+                price: initialData.price || '',
+                category: initialData.category || 'Villas',
+                description: initialData.description || '',
+                images: initialData.images || [{ url: '', alt: '' }],
+                specs: initialData.specs || { bedrooms: 0, bathrooms: 0, buildSize: '', plotSize: '' },
+                features: initialData.features || [''],
+            });
         }
     }, [initialData]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (name.includes('.')) {
-            const [parent, child] = name.split('.');
-            setFormData({
-                ...formData,
+            const [parent, child] = name.split('.') as ['specs', keyof Property['specs']];
+            setFormData(prev => ({
+                ...prev,
                 [parent]: {
-                    ...(formData as any)[parent],
+                    ...prev[parent],
                     [child]: value
                 }
-            });
+            }));
         } else {
-            setFormData({ ...formData, [name]: value });
+            setFormData(prev => ({ ...prev, [name]: value }));
         }
     };
 
@@ -97,7 +109,7 @@ export default function PropertyForm({ initialData, isEditing = false }: Propert
         setLoading(true);
 
         try {
-            const url = isEditing ? `/api/listings/${initialData.id}` : '/api/listings';
+            const url = isEditing ? `/api/listings/${initialData?.id}` : '/api/listings';
             const method = isEditing ? 'PUT' : 'POST';
 
             const payload = isEditing ? formData : { ...formData, type: 'property' };
@@ -315,7 +327,7 @@ export default function PropertyForm({ initialData, isEditing = false }: Propert
                             )}
                             {img.url && (
                                 <div className="w-full md:w-32 h-32 rounded-xl overflow-hidden border border-white/10 hidden md:block">
-                                    <img src={img.url} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as any).src = 'https://via.placeholder.com/150?text=Invalid+URL' }} />
+                                    <img src={img.url} alt="Preview" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+URL' }} />
                                 </div>
                             )}
                         </div>
@@ -328,7 +340,7 @@ export default function PropertyForm({ initialData, isEditing = false }: Propert
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-bold text-white flex items-center gap-3">
                         <div className="w-10 h-10 bg-green-500/10 rounded-xl flex items-center justify-center text-green-500">
-                            <PlusCircle size={20} className="text-green-500" />
+                            <Plus size={20} className="text-green-500" />
                         </div>
                         Premium Features
                     </h2>
@@ -394,25 +406,5 @@ export default function PropertyForm({ initialData, isEditing = false }: Propert
                 </button>
             </div>
         </form>
-    );
-}
-
-function PlusCircle({ size, className }: { size: number, className: string }) {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M8 12h8m-4-4v8" />
-        </svg>
     );
 }

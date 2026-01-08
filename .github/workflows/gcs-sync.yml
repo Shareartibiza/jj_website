@@ -1,0 +1,40 @@
+name: Sync GCS to Public
+
+on:
+  workflow_dispatch: # Allows manual trigger
+  schedule:
+    - cron: '0 0 * * *' # Optional: Run daily at midnight
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Sync GS Bucket to Public
+        run: |
+          # Sync bucket content to ./public directory
+          # -r: recursive, -d: delete files in destination that are not in source
+          gsutil -m rsync -r -d gs://${{ secrets.GCS_BUCKET }} ./public
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: sync assets from GCS bucket"
+          title: "Upcoming Assets Sync from GCS"
+          body: "This PR contains automatically synced assets from the GCS bucket ${{ secrets.GCS_BUCKET }}."
+          branch: "gcs-assets-sync"
+          base: "main" # Change this if your main branch has a different name
+          delete-branch: true

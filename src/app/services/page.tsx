@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import Link from 'next/link'
 import Image from 'next/image'
+import SectionHero from '@/components/sections/SectionHero'
 
 const services = [
   {
@@ -40,13 +41,12 @@ export default function ServicesPage() {
     <main className="bg-secondary min-h-screen">
       <Navbar />
 
-      {/* Header */}
-      <section className="pt-40 pb-20 px-6 text-center">
-        <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">Our Services</h1>
-        <p className="text-gray-400 max-w-xl mx-auto">
-          From acquisition to lifestyle management, we provide a holistic approach to luxury living.
-        </p>
-      </section>
+      <SectionHero
+        title="Our Services"
+        subtitle="From acquisition to lifestyle management, we provide a holistic approach to luxury living."
+        videoSrc="https://cdn.pixabay.com/video/2023/11/04/187740-880909569_large.mp4"
+        category="Services"
+      />
 
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

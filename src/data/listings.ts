@@ -1,37 +1,6 @@
-export interface ListingImage {
-    url: string;
-    alt: string;
-}
+import { Property, Lifestyle } from '@/types';
 
-export interface PropertyListing {
-    id: string;
-    title: string;
-    location: string;
-    price: string;
-    category: string;
-    images: ListingImage[];
-    specs: {
-        bedrooms: number;
-        bathrooms: number;
-        buildSize: string;
-        plotSize?: string;
-    };
-    description: string;
-    features: string[];
-}
-
-export interface LifestyleListing {
-    id: string;
-    title: string;
-    description: string;
-    price: string;
-    category: 'Yacht' | 'Jet' | 'Watch' | 'Car';
-    images: ListingImage[];
-    specs: Record<string, string>;
-    features: string[];
-}
-
-export const properties: PropertyListing[] = [
+export const properties: Property[] = [
     {
         id: '1',
         title: 'Villa Es Cubells',
@@ -138,7 +107,7 @@ export const properties: PropertyListing[] = [
     }
 ];
 
-export const lifestyleItems: LifestyleListing[] = [
+export const lifestyleItems: Lifestyle[] = [
     {
         id: '1',
         title: 'Sunseeker 131 Yacht',

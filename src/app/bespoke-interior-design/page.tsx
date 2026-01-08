@@ -2,30 +2,18 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
+import SectionHero from '@/components/sections/SectionHero'
 
 export default function BespokeInteriorDesign() {
   return (
     <main className="bg-secondary min-h-screen text-white">
       <Navbar />
-      <div style={{
-        position: 'relative',
-        height: '60vh',
-        width: '100%',
-        overflow: 'hidden'
-      }}>
-        <Image
-          src="/assets/lifestyle_interior_detail.png"
-          alt="Bespoke Interior Design"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-5xl md:text-7xl font-serif text-center text-white leading-tight">
-            Bespoke Interior Design
-          </h1>
-        </div>
-      </div>
+      <SectionHero
+        title="Bespoke Interior Design"
+        subtitle="Transforming luxury properties into personal sanctuaries with curated furnishings and art."
+        videoSrc="https://cdn.pixabay.com/video/2020/09/24/51016-464335447_large.mp4"
+        category="Interior Design"
+      />
 
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">

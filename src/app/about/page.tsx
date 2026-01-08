@@ -8,49 +8,19 @@ import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import { MapPin, Target, Shield, Users } from 'lucide-react'
 import Link from 'next/link'
+import SectionHero from '@/components/sections/SectionHero'
 
 export default function About() {
   return (
     <main className="bg-secondary min-h-screen text-white">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/assets/villa_es_cubells_main.png"
-            alt="The Art of Living"
-            fill
-            className="object-cover brightness-50"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-secondary" />
-        </div>
-        <div className="relative z-10 text-center px-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 uppercase tracking-widest"
-          >
-            The Art <br /> of <span className="italic font-light text-primary">Living</span>
-          </motion.h1>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="w-24 h-[1px] bg-primary mx-auto mb-8"
-          />
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-light tracking-wide"
-          >
-            Exclusive Real Estate & Bespoke Lifestyle Management in Ibiza and Beyond.
-          </motion.p>
-        </div>
-      </section>
+      <SectionHero
+        title="The Art of Living"
+        subtitle="Exclusive Real Estate & Bespoke Lifestyle Management in Ibiza and Beyond."
+        videoSrc="https://cdn.pixabay.com/video/2020/09/24/51016-464335447_large.mp4"
+        category="About JJ"
+      />
 
       {/* Philosophy Section */}
       <Section className="bg-secondary">

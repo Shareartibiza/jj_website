@@ -1,6 +1,3 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ListingHero from '@/components/ui/ListingHero'
@@ -10,8 +7,7 @@ import { properties } from '@/data/listings'
 import { Hash, Home, Maximize, MapPin, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 
-export default function PropertyDetailPage() {
-    const params = useParams()
+export default function PropertyDetailPage({ params }: { params: { id: string } }) {
     const property = properties.find((p) => p.id === params.id)
 
     if (!property) {

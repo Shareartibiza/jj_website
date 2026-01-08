@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, ElementType } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -17,6 +17,12 @@ import {
 
 interface AdminLayoutProps {
     children: React.ReactNode;
+}
+
+interface NavItem {
+    name: string;
+    href: string;
+    icon: ElementType;
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
@@ -36,7 +42,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const navItems = [
+    const navItems: NavItem[] = [
         { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
         { name: 'Properties', href: '/admin/properties', icon: Home },
         { name: 'Lifestyle', href: '/admin/lifestyle', icon: Anchor },
