@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, ArrowUpRight, ChevronLeft, ChevronRight, Bed, Bath } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PropertyListing } from '@/data/listings'
+import { Property } from '@/types'
 
 interface PropertyCardProps {
-    property: PropertyListing
+    property: Property
     index: number
 }
 

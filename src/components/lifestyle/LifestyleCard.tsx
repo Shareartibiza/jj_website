@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Anchor, Watch, Car, Plane, ChevronLeft, ChevronRight } from 'lucide-react'
-import { LifestyleListing } from '@/data/listings'
+import { Lifestyle } from '@/types'
 
 interface LifestyleCardProps {
-    item: LifestyleListing
+    item: Lifestyle
     index: number
 }
 
@@ -21,7 +21,7 @@ const CategoryIcon = {
 
 export default function LifestyleCard({ item, index }: LifestyleCardProps) {
     const [currentImage, setCurrentImage] = useState(0)
-    const Icon = CategoryIcon[item.category] || Anchor
+    const Icon = CategoryIcon[item.category as keyof typeof CategoryIcon] || Anchor
 
     const nextImage = (e: React.MouseEvent) => {
         e.preventDefault()

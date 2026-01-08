@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
-import { ListingImage } from '@/data/listings'
+import { Image as ListingImage } from '@/types'
 
 interface ListingHeroProps {
     images: ListingImage[]
