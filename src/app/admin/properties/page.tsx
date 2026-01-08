@@ -51,8 +51,8 @@ export default function AdminProperties() {
     };
 
     const filteredProperties = properties.filter(p =>
-    (p.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.location?.toLowerCase().includes(searchTerm.toLowerCase()))
+        (p.title?.toLowerCase() ?? '').includes(searchTerm.toLowerCase()) ||
+        (p.location?.toLowerCase() ?? '').includes(searchTerm.toLowerCase())
     );
 
     return (

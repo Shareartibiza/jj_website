@@ -15,13 +15,14 @@ interface Listing {
   category: string;
   images: Image[];
   specs: Specs;
+  location?: string;
   description: string;
   features: string[];
 }
 
-export interface Property extends Listing {}
+export interface Property extends Listing { }
 
-export interface Lifestyle extends Listing {}
+export interface Lifestyle extends Listing { }
 
 export interface DB {
   properties: Property[];
