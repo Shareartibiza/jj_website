@@ -28,7 +28,7 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
         { label: 'Bedrooms', value: property.specs.bedrooms, icon: Home },
         { label: 'Bathrooms', value: property.specs.bathrooms, icon: Maximize },
         { label: 'Living Space', value: property.specs.buildSize, icon: Maximize },
-        { label: 'Location', value: property.location, icon: MapPin },
+        { label: 'Location', value: property.location ?? '', icon: MapPin },
     ]
 
     if (property.specs.plotSize) {
@@ -51,7 +51,7 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
                             <h1 className="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight">{property.title}</h1>
                             <div className="flex items-center gap-2 text-gray-400 text-lg mb-8">
                                 <MapPin className="w-5 h-5 text-primary" />
-                                {property.location}
+                                {property.location ?? ''}
                             </div>
                         </div>
 
