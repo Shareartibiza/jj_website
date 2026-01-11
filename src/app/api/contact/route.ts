@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
         const mailOptions = {
             from: `"JJ Luxury Website" <${process.env.SMTP_USER}>`,
-            to: 'yours@jjluxurylifestyle.com',
+            to: 'jozef@jjluxurylifestyle.com',
             subject: `New Inquiry from ${name} - ${interest}`,
             text: `
         Name: ${name}

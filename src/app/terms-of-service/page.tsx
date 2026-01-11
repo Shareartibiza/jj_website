@@ -62,7 +62,7 @@ export default function TermsOfService() {
                 For any legal inquiries regarding these terms, please reach out to us:
               </p>
               <address className="not-italic mt-4 text-white">
-                Email: yours@jjluxurylifestyle.com<br />
+                Email: jozef@jjluxurylifestyle.com<br />
                 Phone: +34 691340237
               </address>
             </section>

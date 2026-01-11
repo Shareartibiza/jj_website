@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
                 If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us at:
               </p>
               <address className="not-italic mt-4 text-white">
-                Email: yours@jjluxurylifestyle.com<br />
+                Email: jozef@jjluxurylifestyle.com<br />
                 Address: Placa de vila 4, 07800, Eivissa, Islas Baleares, Spain
               </address>
             </section>

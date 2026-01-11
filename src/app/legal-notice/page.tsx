@@ -22,7 +22,7 @@ export default function LegalNotice() {
                             <ul className="list-disc pl-6 mt-4 space-y-2 text-white">
                                 <li><strong>Title Holder:</strong> Jozef & Julud (JJ Luxury Lifestyle)</li>
                                 <li><strong>Address:</strong> Placa de vila 4, 07800, Eivissa, Islas Baleares, Spain</li>
-                                <li><strong>Email:</strong> yours@jjluxurylifestyle.com</li>
+                                <li><strong>Email:</strong> jozef@jjluxurylifestyle.com</li>
                                 <li><strong>Phone:</strong> +34 691340237</li>
                             </ul>
                         </section>
