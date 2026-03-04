@@ -29,10 +29,11 @@ export default function LifestylePage() {
             <Navbar />
 
             <SectionHero
-                title="Lifestyle Collection"
-                subtitle="Beyond real estate. Curated excellence for the discerning few."
-                videoSrc="https://cdn.pixabay.com/video/2021/09/25/89660-609804595_large.mp4"
-                category="Lifestyle"
+                title="JJ Lifestyle"
+                subtitle="Your gateway to the most exclusive experiences in the Mediterranean. Curated excellence for the discerning few."
+                videoSrc="https://cdn.pixabay.com/video/2025/12/21/323513_large.mp4"
+                category="Life"
+                fullHeight={true}
             />
 
             <Section>
@@ -41,7 +42,7 @@ export default function LifestylePage() {
                         Array(3).fill(0).map((_, i) => (
                             <div key={i} className="bg-white/5 rounded-3xl aspect-[4/5] animate-pulse" />
                         ))
-                    ) : lifestyleItems.map((item, index) => (
+                    ) : (Array.isArray(lifestyleItems) ? lifestyleItems : []).map((item, index) => (
                         <LifestyleCard key={item.id} item={item} index={index} />
                     ))}
                 </div>

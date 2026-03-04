@@ -7,11 +7,12 @@ interface SectionHeroProps {
     subtitle: string;
     videoSrc: string;
     category?: string;
+    fullHeight?: boolean;
 }
 
-export default function SectionHero({ title, subtitle, videoSrc, category }: SectionHeroProps) {
+export default function SectionHero({ title, subtitle, videoSrc, category, fullHeight = false }: SectionHeroProps) {
     return (
-        <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <section className={`relative ${fullHeight ? 'h-screen min-h-[800px]' : 'h-[60vh] min-h-[500px]'} flex items-center justify-center overflow-hidden`}>
             {/* Background Media */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-black/50 z-10" /> {/* Darker base overlay */}
@@ -63,7 +64,33 @@ export default function SectionHero({ title, subtitle, videoSrc, category }: Sec
                 >
                     {subtitle}
                 </motion.p>
+
+                {fullHeight && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.8 }}
+                        className="mt-12"
+                    >
+                        <div className="font-serif text-2xl font-bold tracking-[0.5em] text-primary">
+                            JJ <span className="text-white text-sm tracking-[0.5em] font-sans ml-2 uppercase">Life</span>
+                        </div>
+                    </motion.div>
+                )}
             </div>
+
+            {/* Scroll Indicator */}
+            {fullHeight && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5, duration: 1.5 }}
+                    className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">Scroll</span>
+                    <div className="w-[1px] h-16 bg-gradient-to-b from-primary via-primary/50 to-transparent" />
+                </motion.div>
+            )}
 
             {/* Bottom Gradient Fade */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary to-transparent z-20" />

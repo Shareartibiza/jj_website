@@ -1,34 +1,34 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import { DB, Property, Lifestyle } from '@/types';
-
-const DB_PATH = path.join(process.cwd(), 'src/data/db.json');
-
-function readDb(): DB {
-    const data = fs.readFileSync(DB_PATH, 'utf8');
-    return JSON.parse(data);
-}
-
-function writeDb(data: DB) {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-}
+import { db } from '@/lib/firebase-admin';
+import { Property, Lifestyle } from '@/types';
 
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const category = searchParams.get('category'); // 'property' or 'lifestyle'
 
-        const db = readDb();
-
         if (category === 'property') {
-            return NextResponse.json(db.properties);
+            const snapshot = await db.collection('properties').get();
+            const properties = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            return NextResponse.json(properties);
         } else if (category === 'lifestyle') {
-            return NextResponse.json(db.lifestyle);
+            const snapshot = await db.collection('lifestyle').get();
+            const lifestyle = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            return NextResponse.json(lifestyle);
         }
 
-        return NextResponse.json(db);
+        // Fetch both if no category specified
+        const [propSnap, lifeSnap] = await Promise.all([
+            db.collection('properties').get(),
+            db.collection('lifestyle').get()
+        ]);
+
+        return NextResponse.json({
+            properties: propSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+            lifestyle: lifeSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        });
     } catch (error) {
+        console.error('Listings GET error:', error);
         return NextResponse.json({ error: 'Failed to fetch listings' }, { status: 500 });
     }
 }
@@ -38,22 +38,17 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { type, ...item } = body; // type is 'property' or 'lifestyle'
 
-        const db = readDb();
-
         if (type === 'property') {
-            const newItem = { ...item, id: Date.now().toString() } as Property;
-            db.properties.push(newItem);
-            writeDb(db);
-            return NextResponse.json(newItem);
+            const docRef = await db.collection('properties').add(item);
+            return NextResponse.json({ id: docRef.id, ...item });
         } else if (type === 'lifestyle') {
-            const newItem = { ...item, id: Date.now().toString() } as Lifestyle;
-            db.lifestyle.push(newItem);
-            writeDb(db);
-            return NextResponse.json(newItem);
+            const docRef = await db.collection('lifestyle').add(item);
+            return NextResponse.json({ id: docRef.id, ...item });
         }
 
         return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
     } catch (error) {
+        console.error('Listings POST error:', error);
         return NextResponse.json({ error: 'Failed to create listing' }, { status: 500 });
     }
 }

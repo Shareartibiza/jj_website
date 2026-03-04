@@ -1,35 +1,26 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import { DB, Property, Lifestyle } from '@/types';
-
-const DB_PATH = path.join(process.cwd(), 'src/data/db.json');
-
-function readDb(): DB {
-    const data = fs.readFileSync(DB_PATH, 'utf8');
-    return JSON.parse(data);
-}
-
-function writeDb(data: DB) {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-}
+import { db } from '@/lib/firebase-admin';
 
 export async function GET(
     request: Request,
     { params }: { params: { id: string } }
 ) {
     try {
-        const db = readDb();
-        const item = [...db.properties, ...db.lifestyle].find(
-            (i: Property | Lifestyle) => i.id === params.id
-        );
-
-        if (!item) {
-            return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+        // Try properties collection first
+        let doc = await db.collection('properties').doc(params.id).get();
+        if (doc.exists) {
+            return NextResponse.json({ id: doc.id, ...doc.data() });
         }
 
-        return NextResponse.json(item);
+        // Try lifestyle collection
+        doc = await db.collection('lifestyle').doc(params.id).get();
+        if (doc.exists) {
+            return NextResponse.json({ id: doc.id, ...doc.data() });
+        }
+
+        return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
     } catch (error) {
+        console.error('Listing GET error:', error);
         return NextResponse.json({ error: 'Failed to fetch listing' }, { status: 500 });
     }
 }
@@ -40,33 +31,26 @@ export async function PUT(
 ) {
     try {
         const body = await request.json();
-        const db = readDb();
 
-        let found = false;
-
-        // Search in properties
-        const propIndex = db.properties.findIndex((i: Property) => i.id === params.id);
-        if (propIndex !== -1) {
-            db.properties[propIndex] = { ...db.properties[propIndex], ...body };
-            found = true;
+        // Try properties
+        let docRef = db.collection('properties').doc(params.id);
+        let doc = await docRef.get();
+        if (doc.exists) {
+            await docRef.update(body);
+            return NextResponse.json({ message: 'Listing updated successfully' });
         }
 
-        // Search in lifestyle if not found in properties
-        if (!found) {
-            const lifeIndex = db.lifestyle.findIndex((i: Lifestyle) => i.id === params.id);
-            if (lifeIndex !== -1) {
-                db.lifestyle[lifeIndex] = { ...db.lifestyle[lifeIndex], ...body };
-                found = true;
-            }
+        // Try lifestyle
+        docRef = db.collection('lifestyle').doc(params.id);
+        doc = await docRef.get();
+        if (doc.exists) {
+            await docRef.update(body);
+            return NextResponse.json({ message: 'Listing updated successfully' });
         }
 
-        if (!found) {
-            return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
-        }
-
-        writeDb(db);
-        return NextResponse.json({ message: 'Listing updated successfully' });
+        return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
     } catch (error) {
+        console.error('Listing PUT error:', error);
         return NextResponse.json({ error: 'Failed to update listing' }, { status: 500 });
     }
 }
@@ -76,22 +60,25 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
-        const db = readDb();
-
-        const initialPropCount = db.properties.length;
-        db.properties = db.properties.filter((i: Property) => i.id !== params.id);
-
-        const initialLifeCount = db.lifestyle.length;
-        db.lifestyle = db.lifestyle.filter((i: Lifestyle) => i.id !== params.id);
-
-        if (db.properties.length === initialPropCount && db.lifestyle.length === initialLifeCount) {
-            return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
+        // Try properties
+        let docRef = db.collection('properties').doc(params.id);
+        let doc = await docRef.get();
+        if (doc.exists) {
+            await docRef.delete();
+            return NextResponse.json({ message: 'Listing deleted successfully' });
         }
 
-        writeDb(db);
-        return NextResponse.json({ message: 'Listing deleted successfully' });
+        // Try lifestyle
+        docRef = db.collection('lifestyle').doc(params.id);
+        doc = await docRef.get();
+        if (doc.exists) {
+            await docRef.delete();
+            return NextResponse.json({ message: 'Listing deleted successfully' });
+        }
+
+        return NextResponse.json({ error: 'Listing not found' }, { status: 404 });
     } catch (error) {
+        console.error('Listing DELETE error:', error);
         return NextResponse.json({ error: 'Failed to delete listing' }, { status: 500 });
     }
 }
-
