@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, ArrowUpRight, ChevronLeft, ChevronRight, Bed, Bath } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Property } from '@/types'
 
 interface PropertyCardProps {
@@ -13,6 +13,7 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, index }: PropertyCardProps) {
+    const router = useRouter()
     const [currentImage, setCurrentImage] = useState(0)
 
     const nextImage = (e: React.MouseEvent) => {
@@ -28,14 +29,14 @@ export default function PropertyCard({ property, index }: PropertyCardProps) {
     }
 
     return (
-        <Link href={`/real-estate/${property.id}`}>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative aspect-[4/5] overflow-hidden bg-gray-900 cursor-pointer"
-            >
+        <motion.div
+            onClick={() => router.push(`/real-estate/${property.id}`)}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="group relative aspect-[4/5] overflow-hidden bg-gray-900 cursor-pointer"
+        >
                 {/* Image Carousel */}
                 <div className="absolute inset-0">
                     <AnimatePresence mode="wait">
@@ -113,7 +114,6 @@ export default function PropertyCard({ property, index }: PropertyCardProps) {
                         </span>
                     </div>
                 </div>
-            </motion.div>
-        </Link>
+        </motion.div>
     )
 }

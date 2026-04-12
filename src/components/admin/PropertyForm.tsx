@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Property } from '@/types';
+import ImageUpload from './ImageUpload';
 import {
     Save,
     X,
@@ -301,12 +303,9 @@ export default function PropertyForm({ initialData, isEditing = false }: Propert
                     {formData.images.map((img, index) => (
                         <div key={index} className="flex flex-col md:flex-row gap-4 p-4 bg-white/5 rounded-2xl border border-white/5 group relative">
                             <div className="flex-1 space-y-4">
-                                <input
-                                    type="text"
-                                    placeholder="Image URL (e.g. /assets/villa.jpg)"
+                                <ImageUpload
                                     value={img.url}
-                                    onChange={(e) => handleImageChange(index, 'url', e.target.value)}
-                                    className="w-full bg-[#1a1a1a] border border-white/5 rounded-xl py-3 px-4 text-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500/50 transition-all"
+                                    onChange={(url) => handleImageChange(index, 'url', url)}
                                 />
                                 <input
                                     type="text"

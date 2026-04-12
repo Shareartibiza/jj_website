@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
-import LifestyleCard from '@/components/lifestyle/LifestyleCard'
 import SectionHero from '@/components/sections/SectionHero'
+import LifestyleCard from '@/components/lifestyle/LifestyleCard'
+import { lifestyleItems as fallbackItems } from '@/data/listings'
 
 export default function LifestylePage() {
     const [lifestyleItems, setLifestyleItems] = useState<any[]>([]);
@@ -13,13 +14,17 @@ export default function LifestylePage() {
 
     useEffect(() => {
         fetch('/api/listings?category=lifestyle')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error('API failed');
+                return res.json();
+            })
             .then(data => {
                 setLifestyleItems(data);
                 setLoading(false);
             })
             .catch(err => {
-                console.error(err);
+                console.warn('Using fallback lifestyle items:', err);
+                setLifestyleItems(fallbackItems);
                 setLoading(false);
             });
     }, []);
@@ -31,7 +36,7 @@ export default function LifestylePage() {
             <SectionHero
                 title="JJ Lifestyle"
                 subtitle="Your gateway to the most exclusive experiences in the Mediterranean. Curated excellence for the discerning few."
-                videoSrc="https://cdn.pixabay.com/video/2025/12/21/323513_large.mp4"
+                videoSrc="https://cdn.pixabay.com/video/2025/11/05/314039_large.mp4"
                 category="Life"
                 fullHeight={true}
             />

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lifestyle, Specs } from '@/types';
+import ImageUpload from './ImageUpload';
 import {
     Save,
     Plus,
@@ -259,7 +260,7 @@ export default function LifestyleForm({ initialData, isEditing = false }: Lifest
                     {formData.images.map((img, index) => (
                         <div key={index} className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
                             <div className="flex-1 space-y-3">
-                                <input type="text" placeholder="URL" value={img.url} onChange={(e) => handleImageChange(index, 'url', e.target.value)} className="w-full bg-[#1a1a1a] border border-white/5 rounded-xl py-3 px-4 text-white text-sm" />
+                                <ImageUpload value={img.url} onChange={(url) => handleImageChange(index, 'url', url)} />
                                 <input type="text" placeholder="Alt" value={img.alt} onChange={(e) => handleImageChange(index, 'alt', e.target.value)} className="w-full bg-[#1a1a1a] border border-white/5 rounded-xl py-3 px-4 text-white text-sm" />
                             </div>
                             <button type="button" onClick={() => removeImage(index)} className="p-3 bg-red-500/10 text-red-500 rounded-xl"><Trash2 size={20} /></button>
