@@ -16,7 +16,7 @@ export default function RealEstatePage() {
         fetch('/api/listings?category=property')
             .then(res => res.json())
             .then(data => {
-                setProperties(data);
+                setProperties(Array.isArray(data) ? data : []);
                 setLoading(false);
             })
             .catch(err => {

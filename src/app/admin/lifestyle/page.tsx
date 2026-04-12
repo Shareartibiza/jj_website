@@ -27,12 +27,13 @@ export default function AdminLifestyle() {
     useEffect(() => {
         fetch('/api/listings?category=lifestyle')
             .then(res => res.json())
-            .then((data: Lifestyle[]) => {
-                setItems(data);
+            .then((data) => {
+                setItems(Array.isArray(data) ? data : []);
                 setLoading(false);
             })
             .catch(err => {
                 console.error(err);
+                setItems([]);
                 setLoading(false);
             });
     }, []);
@@ -60,7 +61,7 @@ export default function AdminLifestyle() {
         }
     };
 
-    const filteredItems = items.filter(p =>
+    const filteredItems = (Array.isArray(items) ? items : []).filter(p =>
     (p.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         p.category?.toLowerCase().includes(searchTerm.toLowerCase()))
     );

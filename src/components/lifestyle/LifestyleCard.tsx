@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ArrowUpRight, Anchor, Watch, Car, Plane, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Lifestyle } from '@/types'
 
@@ -20,6 +20,7 @@ const CategoryIcon = {
 }
 
 export default function LifestyleCard({ item, index }: LifestyleCardProps) {
+    const router = useRouter()
     const [currentImage, setCurrentImage] = useState(0)
     const Icon = CategoryIcon[item.category as keyof typeof CategoryIcon] || Anchor
 
@@ -36,14 +37,14 @@ export default function LifestyleCard({ item, index }: LifestyleCardProps) {
     }
 
     return (
-        <Link href={`/lifestyle/${item.id}`}>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative h-[450px] overflow-hidden bg-gray-900 cursor-pointer"
-            >
+        <motion.div
+            onClick={() => router.push(`/lifestyle/${item.id}`)}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="group relative h-[450px] overflow-hidden bg-gray-900 cursor-pointer"
+        >
                 {/* Image Carousel */}
                 <div className="absolute inset-0">
                     <AnimatePresence mode="wait">
@@ -103,7 +104,6 @@ export default function LifestyleCard({ item, index }: LifestyleCardProps) {
                         </span>
                     </div>
                 </div>
-            </motion.div>
-        </Link>
+        </motion.div>
     )
 }

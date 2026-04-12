@@ -27,12 +27,13 @@ export default function AdminProperties() {
     useEffect(() => {
         fetch('/api/listings?category=property')
             .then(res => res.json())
-            .then((data: Property[]) => {
-                setProperties(data);
+            .then((data) => {
+                setProperties(Array.isArray(data) ? data : []);
                 setLoading(false);
             })
             .catch(err => {
                 console.error(err);
+                setProperties([]);
                 setLoading(false);
             });
     }, []);
@@ -50,7 +51,7 @@ export default function AdminProperties() {
         }
     };
 
-    const filteredProperties = properties.filter(p =>
+    const filteredProperties = (Array.isArray(properties) ? properties : []).filter(p =>
         (p.title?.toLowerCase() ?? '').includes(searchTerm.toLowerCase()) ||
         (p.location?.toLowerCase() ?? '').includes(searchTerm.toLowerCase())
     );
