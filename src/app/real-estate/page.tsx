@@ -32,7 +32,7 @@ export default function RealEstatePage() {
             <SectionHero
                 title="Exclusive Portfolio"
                 subtitle="Discover our curated collection of luxury properties, from private villas to large-scale investment projects."
-                videoSrc="https://cdn.pixabay.com/video/2020/06/19/42533-431835773_large.mp4"
+                videoSrc="/assets/videos/real-estate-hero.mp4"
                 category="Real Estate"
             />
 
