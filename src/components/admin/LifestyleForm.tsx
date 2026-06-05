@@ -257,6 +257,20 @@ export default function LifestyleForm({ initialData, isEditing = false }: Lifest
                     </button>
                 </div>
                 <div className="space-y-4">
+                    <ImageUpload
+                        multiple
+                        onUploadComplete={(urls) => {
+                            setFormData(prev => {
+                                const existingImages = prev.images.filter(img => img.url.trim() !== '');
+                                const newImages = urls.map(url => ({ url, alt: '' }));
+                                return {
+                                    ...prev,
+                                    images: existingImages.length === 0 ? newImages : [...existingImages, ...newImages]
+                                };
+                            });
+                        }}
+                    />
+
                     {formData.images.map((img, index) => (
                         <div key={index} className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
                             <div className="flex-1 space-y-3">
