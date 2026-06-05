@@ -1,62 +1,77 @@
 'use client';
-
+ 
 import React, { useState, useRef } from 'react';
-import { storage } from '@/lib/firebase';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { UploadCloud, X, Loader2 } from 'lucide-react';
-
+ 
 interface ImageUploadProps {
     value: string;
     onChange: (url: string) => void;
     placeholder?: string;
 }
-
+ 
 export default function ImageUpload({ value, onChange, placeholder = "Image URL or Upload File" }: ImageUploadProps) {
     const [isUploading, setIsUploading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
-
+ 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
-
+ 
         // Reset state
         setError('');
         setIsUploading(true);
         setProgress(0);
-
+ 
         try {
-            // Create a unique file name
-            const timestamp = Date.now();
-            const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-            const fileName = `listings/${timestamp}_${safeName}`;
-            
-            const storageRef = ref(storage, fileName);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            uploadTask.on(
-                'state_changed',
-                (snapshot) => {
-                    const progressValue = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const formData = new FormData();
+            formData.append('file', file);
+ 
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/upload', true);
+ 
+            xhr.upload.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const progressValue = (event.loaded / event.total) * 100;
                     setProgress(progressValue);
-                },
-                (err) => {
-                    setError('Failed to upload image. Please check your storage settings.');
-                    setIsUploading(false);
-                    console.error("Upload error:", err);
-                },
-                async () => {
-                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                    onChange(downloadURL);
-                    setIsUploading(false);
-                    setProgress(0);
-                    // Clear the input
-                    if (fileInputRef.current) {
-                        fileInputRef.current.value = '';
+                }
+            };
+ 
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.url) {
+                            onChange(response.url);
+                        } else {
+                            setError('Upload succeeded but no URL was returned.');
+                        }
+                    } catch (parseErr) {
+                        setError('Failed to parse response from server.');
+                    }
+                } else {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        setError(response.error || 'Failed to upload image.');
+                    } catch {
+                        setError('Failed to upload image. Server returned code ' + xhr.status);
                     }
                 }
-            );
+                setIsUploading(false);
+                setProgress(0);
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
+            };
+ 
+            xhr.onerror = () => {
+                setError('A network error occurred during upload.');
+                setIsUploading(false);
+                setProgress(0);
+            };
+ 
+            xhr.send(formData);
         } catch (err) {
             setError('An unexpected error occurred during upload.');
             setIsUploading(false);
